@@ -58,7 +58,8 @@ export default async function Home() {
             <Typography
               variant="h6"
               sx={{
-                color: "#34D399",
+                color: "#77ba9b",
+                // color: "#3b5998",
               }}
             >
               {key}

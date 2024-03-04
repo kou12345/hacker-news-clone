@@ -30,6 +30,7 @@ export default function RootLayout({
       <body
         style={{
           backgroundColor: "#111827",
+          // backgroundColor: "#293e6a",
         }}
       >
         <ThemeProvider theme={darkTheme}>

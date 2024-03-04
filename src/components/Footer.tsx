@@ -16,6 +16,7 @@ export const Footer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#111827",
       }}
     >
       <Typography variant="h6">Footer</Typography>

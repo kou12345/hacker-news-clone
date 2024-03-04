@@ -10,7 +10,8 @@ export const Comment = (props: Props) => {
   return (
     <Box
       sx={{
-        border: "1px solid #34D399",
+        // border: "1px solid #34D399",
+        border: "1px solid #77ba9b",
       }}
     >
       <Typography variant="body1">{comment.text}</Typography>
