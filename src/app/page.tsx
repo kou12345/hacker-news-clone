@@ -1,5 +1,6 @@
+import { Comment } from "@/components/Comment";
 import { Story } from "@/components/Story";
-import { Button, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 
 export default async function Home() {
   console.log("Hello, world!");
@@ -20,21 +21,32 @@ export default async function Home() {
     url: json.url,
   };
 
-  const res2 = await fetch(
-    "https://hacker-news.firebaseio.com/v0/item/9224.json"
-  );
+  const comments: ResComment[] = [];
 
-  const json2 = await res2.json();
-  const comment: ResComment = {
-    by: json2.by,
-    id: json2.id,
-    kids: json2.kids,
-    parent: json2.parent,
-    text: json2.text,
-    time: json2.time,
-    type: json2.type,
-  };
-  console.log(json2);
+  for (const kid of story.kids) {
+    const res = await fetch(
+      `https://hacker-news.firebaseio.com/v0/item/${kid}.json`
+    );
+
+    if (!res.ok) {
+      console.error(res);
+      continue;
+    }
+
+    const json = await res.json();
+
+    comments.push({
+      by: json.by,
+      id: json.id,
+      kids: json.kids,
+      parent: json.parent,
+      text: json.text,
+      time: json.time,
+      type: json.type,
+    });
+  }
+
+  console.log("comments: ", comments);
 
   return (
     <div>
@@ -60,13 +72,11 @@ export default async function Home() {
 
       <hr />
 
-      {Object.keys(comment).map((key) => {
-        return (
-          <Typography key={key}>
-            {comment[key as keyof typeof comment]}
-          </Typography>
-        );
-      })}
+      <Stack spacing={2}>
+        {comments.map((comment, key) => {
+          return <Comment key={key} comment={comment} />;
+        })}
+      </Stack>
     </div>
   );
 }
