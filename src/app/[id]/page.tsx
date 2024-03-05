@@ -1,7 +1,8 @@
 import { convertUnixTimeToDate } from "@/utils/time";
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Comment } from "@/components/Comment";
 import { CustomLink } from "@/components/CustomLink";
+import { ResStory, ResComment } from "@/types";
 
 export default async function Page({ params }: { params: { id: number } }) {
   // todo 不正なidの場合のエラーハンドリング
@@ -42,19 +43,19 @@ export default async function Page({ params }: { params: { id: number } }) {
   const comments = await fetchComments(story.kids);
 
   return (
-    <div>
-      <Typography variant="h3">{story.title}</Typography>
-      <CustomLink href={`/${story.id}`}>
-        <Typography variant="body1">{story.url}</Typography>
+    <Box>
+      <Typography variant="h4">{story.title}</Typography>
+      <CustomLink href={`${story.url}`}>
+        <Typography variant="body1">元記事 {story.url}</Typography>
       </CustomLink>
       <Typography variant="body2">
-        {convertUnixTimeToDate(story.time).toISOString()}
+        作成日時 {convertUnixTimeToDate(story.time).toISOString()}
       </Typography>
 
       <hr />
 
       <Stack spacing={2}>{renderComments(comments)}</Stack>
-    </div>
+    </Box>
   );
 }
 
