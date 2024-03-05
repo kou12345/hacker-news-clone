@@ -1,4 +1,5 @@
 import { renderComments } from "@/app/[id]/page";
+import { ResComment } from "@/types";
 import { convertUnixTimeToDate } from "@/utils/time";
 import { Box, Typography } from "@mui/material";
 import React from "react";
@@ -12,6 +13,8 @@ export const Comment = (props: Props) => {
   return (
     <div>
       <Box
+        margin={1}
+        padding={1}
         sx={{
           border: "1px solid #77ba9b",
         }}
