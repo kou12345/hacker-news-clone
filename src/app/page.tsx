@@ -21,33 +21,6 @@ export default async function Home() {
     url: json.url,
   };
 
-  const comments: ResComment[] = [];
-
-  for (const kid of story.kids) {
-    const res = await fetch(
-      `https://hacker-news.firebaseio.com/v0/item/${kid}.json`
-    );
-
-    if (!res.ok) {
-      console.error(res);
-      continue;
-    }
-
-    const json = await res.json();
-
-    comments.push({
-      by: json.by,
-      id: json.id,
-      kids: json.kids,
-      parent: json.parent,
-      text: json.text,
-      time: json.time,
-      type: json.type,
-    });
-  }
-
-  console.log("comments: ", comments);
-
   return (
     <div>
       <Story story={story} />
@@ -72,12 +45,6 @@ export default async function Home() {
       })}
 
       <hr />
-
-      <Stack spacing={2}>
-        {comments.map((comment, key) => {
-          return <Comment key={key} comment={comment} />;
-        })}
-      </Stack>
     </div>
   );
 }
