@@ -1,5 +1,6 @@
 import { AppBar, Typography } from "@mui/material";
 import React from "react";
+import { CustomLink } from "./CustomLink";
 
 export const Header = () => {
   return (
@@ -19,7 +20,9 @@ export const Header = () => {
         backgroundColor: "#111827",
       }}
     >
-      <Typography variant="h6">Hacker News Clone</Typography>
+      <CustomLink href="/">
+        <Typography variant="h6">Hacker News Clone</Typography>
+      </CustomLink>
     </AppBar>
   );
 };
