@@ -2,9 +2,10 @@ import { convertUnixTimeToDate } from "@/utils/time";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { CustomLink } from "./CustomLink";
+import { TStory } from "@/types";
 
 type Props = {
-  story: ResStory;
+  story: TStory;
 };
 
 export const Story = (props: Props) => {
@@ -15,7 +16,9 @@ export const Story = (props: Props) => {
         <Typography variant="h4">{story.title}</Typography>
       </CustomLink>
 
-      <Typography variant="body1">{story.url}</Typography>
+      <CustomLink href={story.url}>
+        <Typography variant="body1">元記事 {story.url}</Typography>
+      </CustomLink>
 
       <Typography variant="body2">
         {convertUnixTimeToDate(story.time).toISOString()}
