@@ -19,5 +19,6 @@ type ResComment = {
     text: string;
     time: number;
     type: string;
+    children?: ResComment[];
 }
 
