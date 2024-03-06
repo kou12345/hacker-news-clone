@@ -27,16 +27,18 @@ export type ResComment = {
 export const storySchema = z.object({
     id: z.number(),
     deleted: z.boolean().optional(),
-    type: z.enum(["job", "story", "comment", "poll", "pollopt"]),
+    type: z.string(),
     by: z.string(),
     time: z.number(),
-    text: z.string(),
+    text: z.string().optional(),
     dead: z.boolean().optional(),
     parent: z.number().optional(),
     kids: z.array(z.number()).optional(),
-    url: z.string().url(),
-    title: z.string(),
-})
+    url: z.string().url().optional(),
+    title: z.string().optional(),
+    score: z.number().optional(),
+    descendants: z.number().optional(),
+  });
 
 export type TStory = z.infer<typeof storySchema>
 
