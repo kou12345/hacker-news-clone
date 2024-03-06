@@ -1,6 +1,6 @@
 import { renderComments } from "@/app/[id]/page";
 import { ResComment } from "@/types";
-import { convertUnixTimeToDate } from "@/utils/time";
+import { formatDate } from "@/utils/time";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
@@ -21,9 +21,7 @@ export const Comment = (props: Props) => {
       >
         <Typography variant="body1">{comment.text}</Typography>
         <Typography variant="body2">{comment.by}</Typography>
-        <Typography variant="body2">
-          {convertUnixTimeToDate(comment.time).toISOString()}
-        </Typography>
+        <Typography variant="body2">{formatDate(comment.time)}</Typography>
       </Box>
       {comment.children && (
         <div style={{ marginLeft: "20px" }}>
