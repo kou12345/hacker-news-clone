@@ -1,8 +1,8 @@
-import { convertUnixTimeToDate } from "@/utils/time";
 import { Box, Stack, Typography } from "@mui/material";
 import { Comment } from "@/components/Comment";
 import { CustomLink } from "@/components/CustomLink";
 import { ResStory, ResComment } from "@/types";
+import { formatDate } from "@/utils/time";
 
 export default async function Page({ params }: { params: { id: number } }) {
   // todo 不正なidの場合のエラーハンドリング
@@ -48,9 +48,7 @@ export default async function Page({ params }: { params: { id: number } }) {
       <CustomLink href={`${story.url}`}>
         <Typography variant="body1">元記事 {story.url}</Typography>
       </CustomLink>
-      <Typography variant="body2">
-        作成日時 {convertUnixTimeToDate(story.time).toISOString()}
-      </Typography>
+      <Typography variant="body2">作成日時 {formatDate(story.time)}</Typography>
 
       <hr />
 
